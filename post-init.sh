@@ -2,7 +2,7 @@
 
 nohup /usr/lib/trino/bin/run-trino &
 
-sleep 10
+sleep 30
 
 trino < /tmp/post-init.sql
 
