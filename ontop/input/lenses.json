@@ -1,0 +1,99 @@
+{
+  "relations": [
+    {
+      "name": [
+        "\"lenses\"",
+        "\"example\"",
+        "\"example_s3_schema\"",
+        "\"customer\""
+      ],
+      "baseRelation": ["\"customer\""],
+      "uniqueConstraints": {
+        "added": [
+          {
+            "name": "customer_custkey",
+            "determinants": ["\"custkey\""],
+            "isPrimaryKey": false
+          }
+        ]
+      },
+      "type": "BasicLens"
+    },
+    {
+      "name": [
+        "\"lenses\"",
+        "\"example\"",
+        "\"example_s3_schema\"",
+        "\"orders\""
+      ],
+      "baseRelation": ["\"orders\""],
+      "uniqueConstraints": {
+        "added": [
+          {
+            "name": "orders_orderkey",
+            "determinants": ["\"orderkey\""],
+            "isPrimaryKey": false
+          }
+        ]
+      },
+      "type": "BasicLens"
+    },
+    {
+      "name": [
+        "\"lenses\"",
+        "\"example\"",
+        "\"example_s3_schema\"",
+        "\"lineitem\""
+      ],
+      "baseRelation": ["\"lineitem\""],
+      "uniqueConstraints": {
+        "added": [
+          {
+            "name": "lineitem_orderkey_linenumber",
+            "determinants": ["\"orderkey\"", "\"linenumber\""],
+            "isPrimaryKey": false
+          }
+        ]
+      },
+      "type": "BasicLens"
+    },
+    {
+      "name": [
+        "\"lenses\"",
+        "\"example\"",
+        "\"example_s3_schema\"",
+        "\"supplier\""
+      ],
+      "baseRelation": ["\"supplier\""],
+      "uniqueConstraints": {
+        "added": [
+          {
+            "name": "supplier_suppkey",
+            "determinants": ["\"suppkey\""],
+            "isPrimaryKey": false
+          }
+        ]
+      },
+      "type": "BasicLens"
+    },
+    {
+      "name": [
+        "\"lenses\"",
+        "\"example\"",
+        "\"example_s3_schema\"",
+        "\"part\""
+      ],
+      "baseRelation": ["\"part\""],
+      "uniqueConstraints": {
+        "added": [
+          {
+            "name": "part_partkey",
+            "determinants": ["\"partkey\""],
+            "isPrimaryKey": false
+          }
+        ]
+      },
+      "type": "BasicLens"
+    }
+  ]
+}

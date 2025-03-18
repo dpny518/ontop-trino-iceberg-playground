@@ -1,0 +1,41 @@
+[PrefixDeclaration]
+data:		http://mydata.example.org/
+geo:		http://www.opengis.net/ont/geosparql#
+rdf:		http://www.w3.org/1999/02/22-rdf-syntax-ns#
+rdfs:		http://www.w3.org/2000/01/rdf-schema#
+voc:		http://vocabulary.example.org/
+xsd:		http://www.w3.org/2001/XMLSchema#
+owl:		http://www.w3.org/2002/07/owl#
+obda:		https://w3id.org/obda/vocabulary#
+schema:		https://schema.org/
+
+[MappingDeclaration] @collection [[
+mappingId	mapping-supplier
+target		data:example-example_s3_schema-supplier/{"suppkey"} a schema:Organization; schema:name {"name"}^^xsd:string .
+source		SELECT "name", "suppkey" FROM "supplier"
+
+mappingId	mapping-lineitem
+target		data:example-example_s3_schema-lineitem/{"orderkey"}/{"linenumber"} a schema:OrderItem; schema:orderedItem data:example-example_s3_schema-part/{"partkey"} .
+source		SELECT "linenumber", "orderkey", "partkey" FROM "lineitem"
+
+mappingId	mapping-lineitem-2
+target		data:example-example_s3_schema-lineitem/{"orderkey"}/{"linenumber"} schema:orderQuantity {"quantity"}^^xsd:double ; schema:vendor data:example-example_s3_schema-supplier/{"suppkey"} .
+source		SELECT "linenumber", "orderkey", "partkey", "quantity", "suppkey" FROM "lineitem"
+
+mappingId	mapping-order-orderitem
+target		data:example-example_s3_schema-orders/{"orderkey"} schema:orderedItem data:example-example_s3_schema-lineitem/{"orderkey"}/{"linenumber"} .
+source		SELECT "linenumber", "orderkey" FROM "lineitem"
+
+mappingId	mapping-part
+target		data:example-example_s3_schema-part/{"partkey"} a schema:Product; schema:manufacturer {"mfgr"}^^xsd:string ; schema:name {"name"}^^xsd:string .
+source		SELECT "mfgr", "name", "partkey" FROM "part"
+
+mappingId	mapping-customer
+target		data:example-customer/{"custkey"} a schema:Organization; schema:name {"name"}^^xsd:string .
+source		SELECT "custkey", "name" FROM "customer"
+
+mappingId	mapping-orders
+target		data:example-example_s3_schema-orders/{"orderkey"} a schema:Order; schema:customer data:example-customer/{"custkey"} .
+source		SELECT "orderkey", "custkey" FROM "orders"
+
+]]
