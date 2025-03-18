@@ -2,7 +2,7 @@ version: "3"
 
 services:
   catalog:
-    image: projectnessie/nessie
+    image: ghcr.io/projectnessie/nessie
     container_name: catalog
     networks:
       iceberg-nessie-net:
